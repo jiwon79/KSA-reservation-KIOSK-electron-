@@ -80,10 +80,6 @@ function overallTable() {
     console.log('apply overall table');
 }
 
-function test() {
-    console.log('test');
-}
-
 // day log file
 // a : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 // b : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -184,25 +180,8 @@ function appear_modal(option) {
     if (option == 'over_time')   modal.innerText = '세미나실을 최대 3시간 이용 가능합니다';
 }
 
-
-function onClick_info() {
-    document.querySelector('.modal_wrap.not_info').style.display ='block';
-    document.querySelector('.black_bg').style.display ='block';
-}
-
-function offClick_info() {
-    document.querySelector('.modal_wrap.not_info').style.display ='none';
-    document.querySelector('.black_bg').style.display ='none';
-}
-
-// modal when reserve over time
-function onClick_time() {
-    document.querySelector('.modal_wrap.over_time').style.display ='block';
-    document.querySelector('.black_bg').style.display ='block';
-}
-
-function offClick_time() {
-    document.querySelector('.modal_wrap.over_time').style.display ='none';
+function close_modal() {
+    document.querySelector('.modal_wrap').style.display ='none';
     document.querySelector('.black_bg').style.display ='none';
 }
 
@@ -213,7 +192,7 @@ function reservation() {
     var stu_name = reserveForm.name.value;
 
     // if don't input number or name, show modal
-    document.querySelector('.modal_close').addEventListener('click', offClick_info);
+    document.querySelector('.modal_close').addEventListener('click', close_modal);
     if (!stu_number || !stu_name) {
         appear_modal('not_info');
     } else if (!availableTime(stu_number)) {
@@ -222,17 +201,5 @@ function reservation() {
         saveDayLogByArray(stu_number);
         reserveForm.submit();
     }
-    // } else {
-    //     // if reserve over limit, show modal
-    //     // console.log(availableTime(stu_number));
-
-    //     if(!availableTime(stu_number)) {
-    //         onClick_time();
-    //         document.querySelector('.modal_close.over_time').addEventListener('click', offClick_time);
-    //     } else {
-    //         saveDayLogByArray(stu_number);
-    //         reserveForm.submit();
-    //     }
-    // }
 }
 
