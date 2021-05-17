@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/reservation.css">
+    <link rel="stylesheet" href="../src/css/index.css">
+    <title>Reservation</title>
+</head>
+<body>
+
+
+    <div class="center">
+        <h3>현재 예약 상태</h3>
+
+        <table class="timeTable">
+            <td onclick="applyTable(0)">8</td>
+            <td onclick="applyTable(1)">9</td>
+            <td onclick="applyTable(2)">10</td>
+            <td onclick="applyTable(3)">11</td>
+            <td onclick="applyTable(4)">12</td>
+            <td onclick="applyTable(5)">1</td>
+            <td onclick="applyTable(6)">2</td>
+            <td onclick="applyTable(7)">3</td>
+            <td onclick="applyTable(8)">4</td>
+            <td onclick="applyTable(9)">5</td>
+            <td onclick="applyTable(10)">6</td>
+            <td onclick="applyTable(11)">7</td>
+            <td onclick="applyTable(12)">8</td>
+            <td onclick="applyTable(13)">9</td>
+            <td onclick="applyTable(14)">10</td>
+        </table>
+
+        <h3>form</h3>
+        <form name="reserveForm" action="end.html" method="POST">
+            <div class="txt_field">
+                <input type="text" name="number" autocomplete="off" required>
+                <span></span>
+                <label>Student number(19-079)</label>
+
+            </div>
+    
+            <div class="txt_field">
+                <input type="text" name="name" autocomplete="off" required>
+                <span></span>
+                <label>Name</label>
+                
+            </div>
+    
+            <input type="button" onclick="reservation()"  value="예약하기">
+        </form>
+    </div>
+
+    
+    <div onclick="createEmptyFile()">
+        create text file
+    </div>
+
+    <div onclick="loadDayLog()">
+        load Day log
+    </div>
+
+    <div onclick="print()">
+        print room List
+    </div>
+
+    <div onclick="availableTime('19-001')">
+        avaiable time
+    </div>
+
+    <!-- moal -->
+    <div class="black_bg"></div>
+
+    <div class="modal_wrap not_info">
+        <div class="modal_head">
+            오류오류
+            <div class="modal_close not_info"><a href="#">close</a></div>
+        </div>
+        <div class="modal_content"></div>
+    </div>
+
+    <a href="index.html"><img src="../src/img/home.png" alt="homne-img" class="home-img"></a>
+    
+
+    <script src="../src/js/function.js"></script>
+    <script src="../src/js/connectDB.js"></script>
+    <script src="../src/js/reservation.js"></script>
+</body>
+</html>
