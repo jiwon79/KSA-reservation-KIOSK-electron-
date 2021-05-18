@@ -24,7 +24,7 @@
                 <label>Name</label>
             </div>
     
-            <input type="button" onclick="checkbox_load()"  value="다음">
+            <input id="input_button" type="button" onclick="checkbox_load()"  value="다음">
         </form>
 
         <form class="cancelForm" action="" method="post">
@@ -44,6 +44,7 @@
                     <label for="time3">11시</label>
                 </li>
             </ul>
+            <input id="checkbox_button" type="button" onclick="reserve_cancel()"  value="다음">
         </form>
     </div>
 
@@ -57,7 +58,7 @@
         </div>
         <div class="modal_content"></div>
     </div>
-    
+
     <a href="index.html"><img src="../src/img/home.png" alt="homne-img" class="home-img"></a>
 
     <script src="../src/js/function.js"></script>

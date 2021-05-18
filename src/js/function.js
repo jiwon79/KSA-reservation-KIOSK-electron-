@@ -191,7 +191,8 @@ function appear_modal(option) {
     var modal = document.querySelector('.modal_content');
     if (option=='not_info')     modal.innerText = '학번과 이름 다시 입력 ㄱㄱ';
     if (option == 'over_time')   modal.innerText = '세미나실을 최대 3시간 이용 가능합니다';
-    if (option == 'not_reserve')    modal.innerText = '예약을 하지 않았습니다.'
+    if (option == 'not_reserve')    modal.innerText = '예약을 하지 않았습니다.';
+    if (option == 'not_checkbox') modal.innerText = '취소할 시간을 선택해주세요';
 }
 
 function close_modal() {
@@ -226,11 +227,40 @@ function checkbox_load() {
     var stu_name = form.name.value;
 
     reserveList = reserveTime(stu_number);
+
+    // modal appear
     document.querySelector('.modal_close').addEventListener('click', close_modal);
     if(!stu_number || !stu_name) {
         appear_modal('not_info');
     } else if (reserveList.length == 0) {
         appear_modal('not_reserve')
     }
+
+    document.querySelector('.cancelForm').style.display = 'block';
+    var checkbox = document.getElementsByName("time");
+    // whether visible or unvisible checkbox
+    for (var i=0; i<checkbox.length; i++) {
+        if (i < reserveList.length) {
+            document.querySelector('form li:nth-child('+String(i+1)+')').style.display = 'block';
+        } else {
+            document.querySelector('form li:nth-child('+String(i+1)+')').style.display = 'none';
+        }
+    }
+
     console.log(reserveList);
+}
+
+function reserve_cancel() {
+    var checkbox = document.getElementsByName("time");
+    var isCheck = false;
+    for (var i=0; i<checkbox.length; i++) {
+        if (checkbox[i].check == true) {
+            isCheck = true;
+        }
+    }
+
+    document.querySelector('.modal_close').addEventListener('click', close_modal);
+    if(!isCheck) {
+        appear_modal('not_checkbox')
+    }
 }

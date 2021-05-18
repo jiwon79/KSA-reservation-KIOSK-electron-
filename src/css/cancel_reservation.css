@@ -1,11 +1,11 @@
 .center {
     position: absolute;
     width: 80%;
-    top: 25%;
+    top: 10%;
     left: 50%;
     background-color: white;
     border-radius: 10px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 }
 
 .center h3 {
@@ -92,4 +92,8 @@ form ul {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.cancelForm {
+    display: none;
 }
