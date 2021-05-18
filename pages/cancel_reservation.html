@@ -11,24 +11,45 @@
     <div class="center">
         <h3>Reservatoin Cancel Page</h3>
 
-        <form name="cancelForm" action="" method="POST">
+        <form name="cancelInputForm" action="" method="POST">
             <div class="txt_field">
                 <input type="text" name="number" autocomplete="off" required>
                 <span></span>
                 <label>Student number(19-079)</label>
-
             </div>
     
             <div class="txt_field">
                 <input type="text" name="name" autocomplete="off" required>
                 <span></span>
                 <label>Name</label>
-                
             </div>
     
-            <input type="button" onclick=""  value="다음">
+            <input type="button" onclick="checkbox_load()"  value="다음">
+        </form>
+
+        <form class="cancelForm" action="" method="post">
+            <ul>
+                <li>
+                    <input type="checkbox" id="time1" name="time" value="1">
+                    <label for="time1">9시</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" id="time2" name="time" value="2">
+                    <label for="time2">10시</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" id="time3" name="time" value="3">
+                    <label for="time3">11시</label>
+                </li>
+            </ul>
         </form>
     </div>
     <a href="index.html"><img src="../src/img/home.png" alt="homne-img" class="home-img"></a>
+
+    <script src="../src/js/function.js"></script>
+    <script src="../src/js/connectDB.js"></script>
+    <script src="../src/js/reservation.js"></script>
 </body>
 </html>

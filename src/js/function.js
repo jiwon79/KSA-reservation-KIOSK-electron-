@@ -164,6 +164,19 @@ function availableTime(stu_number) {
     return false;
 }
 
+// output: 해당 학생이 예약한 시간 리스트
+function reserveTime(stu_number) {
+    result = [];
+    for(key in roomList) {
+        for(i=0; i<roomList[key].length; i++) {
+            if (roomList[key][i] == stu_number) {
+                result.push([key, i]);
+            }
+        }
+    }
+    return result;
+}
+
 function print() {
     for(key in roomList){
         console.log(key, roomList[key]);
@@ -185,6 +198,7 @@ function close_modal() {
     document.querySelector('.black_bg').style.display ='none';
 }
 
+
 // reservatoin button
 function reservation() {
     var reserveForm = document.reserveForm;
@@ -203,3 +217,13 @@ function reservation() {
     }
 }
 
+
+// cancel reservation functions
+function checkbox_load() {
+    var form = document.cancelInputForm;
+    var stu_number = form.number.value;
+    var stu_name = form.name.value;
+
+    reserveList = reserveTime(stu_number);
+    console.log(reserveList);
+}
