@@ -191,6 +191,7 @@ function appear_modal(option) {
     var modal = document.querySelector('.modal_content');
     if (option=='not_info')     modal.innerText = '학번과 이름 다시 입력 ㄱㄱ';
     if (option == 'over_time')   modal.innerText = '세미나실을 최대 3시간 이용 가능합니다';
+    if (option == 'not_reserve')    modal.innerText = '예약을 하지 않았습니다.'
 }
 
 function close_modal() {
@@ -225,5 +226,11 @@ function checkbox_load() {
     var stu_name = form.name.value;
 
     reserveList = reserveTime(stu_number);
+    document.querySelector('.modal_close').addEventListener('click', close_modal);
+    if(!stu_number || !stu_name) {
+        appear_modal('not_info');
+    } else if (reserveList.length == 0) {
+        appear_modal('not_reserve')
+    }
     console.log(reserveList);
 }
