@@ -10,8 +10,9 @@
 <body>
     <div class="center">
         <h3>Reservatoin Cancel Page</h3>
+        <span id="stu_number"></span>
 
-        <form name="cancelInputForm" action="" method="POST">
+        <form name="cancelInputForm" action="" method="GET">
             <div class="txt_field">
                 <input type="text" name="number" autocomplete="off" required>
                 <span></span>
@@ -24,10 +25,10 @@
                 <label>Name</label>
             </div>
     
-            <input id="input_button" type="button" onclick="checkbox_load()"  value="다음">
+            <input id="input_button" type="button" onclick="checkbox_load(event)"  value="다음">
         </form>
 
-        <form class="cancelForm" action="" method="post">
+        <form name="cancelForm" class="cancelForm" action="cancel_end.html" method="post">
             <ul>
                 <li>
                     <input type="checkbox" id="time1" name="time" value="1">
@@ -63,6 +64,5 @@
 
     <script src="../src/js/function.js"></script>
     <script src="../src/js/connectDB.js"></script>
-    <script src="../src/js/reservation.js"></script>
 </body>
 </html>

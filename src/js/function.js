@@ -126,14 +126,17 @@ function saveDayLogByArray(stu_number) {
     d = getTodayDate();
     textPath = rootPath+'/log/day_log/'+d+'.txt';
     data = ''
-    room = getParameterByName('room');
+    
     
     // if element == 1, change stu_number
-    for(i=0; i<roomList[room].length; i++) {
-        if (roomList[room][i] == 1) {
-            roomList[room][i] = stu_number;
+    for(var room in roomList) {
+        for(i=0; i<roomList[room].length; i++) {
+            if (roomList[room][i] == 1) {
+                roomList[room][i] = stu_number;
+            }
         }
     }
+
 
     // save day log file
     for(key in roomList) {
@@ -214,6 +217,7 @@ function reservation() {
     } else if (!availableTime(stu_number)) {
         appear_modal('over_time');
     } else {
+        room = getParameterByName('room');
         saveDayLogByArray(stu_number);
         reserveForm.submit();
     }
@@ -221,46 +225,70 @@ function reservation() {
 
 
 // cancel reservation functions
-function checkbox_load() {
-    var form = document.cancelInputForm;
+function checkbox_load(e) {    
+    var form = document.cancelInputForm;    
     var stu_number = form.number.value;
     var stu_name = form.name.value;
-
+    document.querySelector('#stu_number').innerText = stu_number;
     reserveList = reserveTime(stu_number);
+    console.log(reserveList);
 
     // modal appear
     document.querySelector('.modal_close').addEventListener('click', close_modal);
     if(!stu_number || !stu_name) {
         appear_modal('not_info');
+        return;
     } else if (reserveList.length == 0) {
         appear_modal('not_reserve')
+        return;
     }
+    e.preventDefault();
+    // form.submit();
+    
 
     document.querySelector('.cancelForm').style.display = 'block';
     var checkbox = document.getElementsByName("time");
     // whether visible or unvisible checkbox
     for (var i=0; i<checkbox.length; i++) {
         if (i < reserveList.length) {
-            document.querySelector('form li:nth-child('+String(i+1)+')').style.display = 'block';
+            formLi = document.querySelector('form li:nth-child('+String(i+1)+')')
+            formLi.style.display = 'block';
+            
+            var str = 'seminar ' + reserveList[i][0] + ' : ';
+            str +=  String((reserveList[i][1]+8)%12) + '~' + String((reserveList[i][1]+9)%12) + '시';
+            formLi.querySelector('label').innerText = str;
         } else {
             document.querySelector('form li:nth-child('+String(i+1)+')').style.display = 'none';
         }
     }
-
-    console.log(reserveList);
 }
 
 function reserve_cancel() {
     var checkbox = document.getElementsByName("time");
     var isCheck = false;
+    var checkList = [];
+
+    stu_number = document.querySelector('#stu_number').innerText;
+    console.log('stu number : ' + stu_number);
+    reserveList = reserveTime(stu_number);
+    console.log('reserveList : ',reserveList);
+    console.log('roomList : ',roomList)
+
     for (var i=0; i<checkbox.length; i++) {
-        if (checkbox[i].check == true) {
+        if (checkbox[i].checked == true) {
             isCheck = true;
+            roomList[reserveList[i][0]][reserveList[i][1]] = 1;
+            console.log(roomList[reserveList[i][0]][reserveList[i][1]]);
+            checkList.push(i);
         }
     }
-
+    
+    
+    // modal appear
     document.querySelector('.modal_close').addEventListener('click', close_modal);
     if(!isCheck) {
-        appear_modal('not_checkbox')
+        appear_modal('not_checkbox');
     }
+    saveDayLogByArray('00-000');
+    document.cancelForm.submit();
 }
