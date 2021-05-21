@@ -92,7 +92,7 @@ function overallTable() {
 // e : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 // create text file
-function createEmptyFile() {
+function createDayLogFile() {
     d = getTodayDate();
     textPath = rootPath+'/log/day_log/'+d+'.txt';
     data = 'a : 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000, 00-000\n'+
@@ -106,6 +106,19 @@ function createEmptyFile() {
             return console.log(err);
         }
         console.log("create empty day log file");
+    });
+}
+
+function createUserLogFile() {
+    d = getTodayDate();
+    textPath = rootPath+'/log/user_log/'+d+'.txt';
+    data = 'current time / stu_number / stu_name / phone number / option / seminar / time';
+    
+    fs.writeFile(textPath, data, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("create empty user log file");
     });
 }
 
@@ -153,6 +166,28 @@ function saveDayLogByArray(stu_number) {
     });
 }
 
+function saveUserLog(option, name, number, tel, room, time) {
+    d = getTodayDate();
+    textPath = rootPath+'/log/user_log/'+d+'.txt';
+    data = fs.readFileSync(textPath, {encoding: 'utf8'});
+
+    let today = new Date();   
+    let hours = today.getHours(); // 시
+    let minutes = today.getMinutes();  // 분
+    let seconds = today.getSeconds();  // 초
+
+    data = data + '\n' + hours + ':' + minutes + ':' + seconds;
+    data = data + ' ' + number + ' ' + name + ' ' + tel;
+    data = data + ' ' + option + ' ' + room + ' ' + time;
+    fs.writeFileSync(textPath, data, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+    });
+}
+
+
+
 // output: 해당 학생이 예약한 시간 리스트
 function reserveTime(stu_number) {
     result = [];
@@ -195,6 +230,7 @@ function reservation() {
     var reserveForm = document.reserveForm;
     var stu_number = reserveForm.number.value;
     var stu_name = reserveForm.name.value;
+    var stu_tel = reserveForm.tel.value;
     var room = getParameterByName('room');
     var checkList = [];
     reserveList = reserveTime(stu_number);
@@ -216,6 +252,7 @@ function reservation() {
         
         for (i=0; i<checkList.length; i++) {
             roomList[checkList[i][0]][checkList[i][1]] = 1;
+            saveUserLog('reservation', stu_name, stu_number, stu_tel, checkList[i][0], checkList[i][1]);
         }
         saveDayLogByArray(stu_number);
         reserveForm.submit();
@@ -228,7 +265,11 @@ function checkbox_load(e) {
     var form = document.cancelInputForm;    
     var stu_number = form.number.value;
     var stu_name = form.name.value;
+    var stu_tel = form.tel.value;
+
     document.querySelector('#stu_number').innerText = stu_number;
+    document.querySelector('#stu_name').innerText = stu_name;
+    document.querySelector('#stu_tel').innerText = stu_tel;
     reserveList = reserveTime(stu_number);
     console.log(reserveList);
 
@@ -265,29 +306,33 @@ function checkbox_load(e) {
 function reserve_cancel() {
     var checkbox = document.getElementsByName("time");
     var isCheck = false;
-    var checkList = [];
 
     stu_number = document.querySelector('#stu_number').innerText;
-    console.log('stu number : ' + stu_number);
-    reserveList = reserveTime(stu_number);
-    console.log('reserveList : ',reserveList);
-    console.log('roomList : ',roomList)
+    stu_name = document.querySelector('#stu_name').innerText;
+    stu_tel = document.querySelector('#stu_tel').innerText;
 
+    reserveList = reserveTime(stu_number);
+    
+    // effectiveness test
     for (var i=0; i<checkbox.length; i++) {
         if (checkbox[i].checked == true) {
             isCheck = true;
-            roomList[reserveList[i][0]][reserveList[i][1]] = 1;
-            console.log(roomList[reserveList[i][0]][reserveList[i][1]]);
-            checkList.push(i);
         }
     }
-    
     
     // modal appear
     document.querySelector('.modal_close').addEventListener('click', close_modal);
     if(!isCheck) {
         appear_modal('not_checkbox');
     }
+
+    for (var i=0; i<checkbox.length; i++) {
+        if (checkbox[i].checked == true) {
+            roomList[reserveList[i][0]][reserveList[i][1]] = 1;
+            saveUserLog('reservation_cancel', stu_name, stu_number, stu_tel, reserveList[i][0], reserveList[i][1]);
+        }
+    }
+
     saveDayLogByArray('00-000');
     document.cancelForm.submit();
 }

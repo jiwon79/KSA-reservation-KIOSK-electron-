@@ -19,7 +19,7 @@
     box-sizing: border-box;
 }
 
-#stu_number {
+.info {
     display: none;
 }
 

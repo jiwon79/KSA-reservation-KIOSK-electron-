@@ -10,7 +10,10 @@
 <body>
     <div class="center">
         <h3>Reservatoin Cancel Page</h3>
-        <span id="stu_number"></span>
+        <span id="stu_number" class="info"></span>
+        <span id="stu_name" class="info"></span>
+        <span id="stu_tel" class="info"></span>
+
 
         <form name="cancelInputForm" action="" method="GET">
             <div class="txt_field">
@@ -23,6 +26,12 @@
                 <input type="text" name="name" autocomplete="off" required>
                 <span></span>
                 <label>Name</label>
+            </div>
+
+            <div class="txt_field">
+                <input type="text" name="tel" autocomplete="off" required>
+                <span></span>
+                <label>Phone number</label>
             </div>
     
             <input id="input_button" type="button" onclick="checkbox_load(event)"  value="다음">
