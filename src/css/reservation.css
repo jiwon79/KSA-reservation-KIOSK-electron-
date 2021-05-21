@@ -6,17 +6,29 @@ body {
     background: linear-gradient(120deg, #2980b9, #8e44ad);
 }
 
+.reserveTable {
+    border: 1px solid;
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+
+.reserveTable td, 
+.reserveTable tr {
+    padding: 0;
+    border: 1px solid;
+}
+
 /* table */
 .timeTable {
     margin: 0 auto;
 }
 
-table {
+.timeTable {
     border-collapse: collapse; 
     border-spacing: 0;
 }
 
-td {
+.timeTable td {
     width: 20px;
     padding: 0;
     border: 0;
@@ -27,11 +39,11 @@ td {
 .center {
     position: absolute;
     width: 60%;
-    top: 30%;
+    top: 3%;
     left: 50%;
     background-color: white;
     border-radius: 10px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 }
 
 .center h3 {
