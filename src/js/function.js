@@ -31,19 +31,23 @@ function getParameterByName(name) {
 }
 
 // time table function
-// when click time, chage coloar & array
-function applyTable(t) {
+function applyCheckbox(t) {
     var room = getParameterByName('room');
-    var qeury = 'td:nth-child(' + String(t+1) + ')';
-    table = document.querySelector(qeury);
+    var checkbox = document.querySelector('.reserveTable tr:nth-child(' + String(t+2) + ') td:nth-child(1) input');
 
-    console.log(roomList[room][t]);
-    if (roomList[room][t] == '00-000') {
-        roomList[room][t] = 1;
-        table.style.backgroundColor = "#ff0000";
-    } else if (roomList[room][t] == 1) {
-        roomList[room][t] = '00-000';
-        table.style.backgroundColor = "#ffffff";
+    if (roomList[room][t] != '00-000') {
+        console.log('이미 예약이 됨');
+        return ;
+    }
+    changeChecked(t);
+}
+
+function changeChecked(t) {
+    var checkbox = document.querySelector('.reserveTable tr:nth-child(' + String(t+2) + ') td:nth-child(1) input');
+    if (checkbox.checked == true) {
+        checkbox.checked = false;
+    } else {
+        checkbox.checked = true;
     }
 }
 
@@ -52,11 +56,11 @@ function reservationTable() {
     var room = getParameterByName('room');
 
     for(i=0; i<15; i++) {
-        var qeury = 'td:nth-child(' + String(i+1) + ')';
-        
-        table = document.querySelector(qeury);
+        var tr = document.querySelector('.reserveTable tr:nth-child(' + String(i+2) + ')');
         if (!roomList[room][i].includes('00-000')) {
-            table.style.backgroundColor = "#555555";
+            // tr.style.color = '#00ff00';
+            tr.style.backgroundColor = '#adadad';
+            tr.querySelector('td:nth-child(4)').innerText = roomList[room][i];
         }
     }
     console.log('apply table');
@@ -127,7 +131,6 @@ function saveDayLogByArray(stu_number) {
     textPath = rootPath+'/log/day_log/'+d+'.txt';
     data = ''
     
-    
     // if element == 1, change stu_number
     for(var room in roomList) {
         for(i=0; i<roomList[room].length; i++) {
@@ -136,7 +139,6 @@ function saveDayLogByArray(stu_number) {
             }
         }
     }
-
 
     // save day log file
     for(key in roomList) {
@@ -149,22 +151,6 @@ function saveDayLogByArray(stu_number) {
         }
         console.log("save  day log file");
     });
-}
-
-function availableTime(stu_number) {
-    count = 0;
-    for(key in roomList) {
-        for(i=0; i<roomList[key].length; i++) {
-            if (roomList[key][i] == stu_number || roomList[key][i] == 1) {
-                count++;
-            }
-        }
-    }
-    console.log(count);
-    if (count<=3) {
-        return true;
-    }
-    return false;
 }
 
 // output: 해당 학생이 예약한 시간 리스트
@@ -209,15 +195,28 @@ function reservation() {
     var reserveForm = document.reserveForm;
     var stu_number = reserveForm.number.value;
     var stu_name = reserveForm.name.value;
+    var room = getParameterByName('room');
+    var checkList = [];
+    reserveList = reserveTime(stu_number);
+
+    for (i=0; i<15; i++) {
+        var checkbox = document.querySelector('.reserveTable tr:nth-child(' + String(i+2) + ') td:nth-child(1) input');
+        if (checkbox.checked == true) {
+            checkList.push([room,i]); 
+        }
+    }
 
     // if don't input number or name, show modal
     document.querySelector('.modal_close').addEventListener('click', close_modal);
     if (!stu_number || !stu_name) {
         appear_modal('not_info');
-    } else if (!availableTime(stu_number)) {
+    } else if (checkList.length + reserveList.length > 3) {
         appear_modal('over_time');
     } else {
-        room = getParameterByName('room');
+        
+        for (i=0; i<checkList.length; i++) {
+            roomList[checkList[i][0]][checkList[i][1]] = 1;
+        }
         saveDayLogByArray(stu_number);
         reserveForm.submit();
     }
