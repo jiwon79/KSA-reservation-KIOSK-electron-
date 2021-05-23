@@ -2,13 +2,15 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #2F2F2F;
     height: 100vh;
-    background: linear-gradient(120deg, #2980b9, #8e44ad);
 }
 
 .reserveTable {
     border: 1px solid;
     border-collapse: collapse;
+    margin: 0 auto;
+    width: 90%;
     font-size: 0.8em;
 }
 
@@ -38,7 +40,7 @@ body {
 /* form */
 .center {
     position: absolute;
-    width: 60%;
+    width: 70%;
     top: 3%;
     left: 50%;
     background-color: white;
@@ -60,12 +62,12 @@ body {
 form .txt_field {
     position: relative;
     border-bottom: 2px solid #adadad;
-    margin: 30px 0;
+    margin: 15px 0;
 }
 
 .txt_field input {
     width: 100%;
-    padding: 0 5px;
+    padding: 0px 5px;
     height: 40px;
     font-size: 16px;
     border: none;
@@ -78,7 +80,7 @@ form .txt_field {
   top: 50%;
   left: 5px;
   color: #adadad;
-  transform: translateY(-50%);
+  transform: translateY(-30%);
   font-size: 16px;
   pointer-events: none;
   transition: .5s;

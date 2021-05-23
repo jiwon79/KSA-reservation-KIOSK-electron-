@@ -15,6 +15,10 @@
     width: 100%;
 }
 
+.seminar:nth-child(5) {
+    width: 90%;
+}
+
 .small_table {
     width: 100%;
     position: relative;

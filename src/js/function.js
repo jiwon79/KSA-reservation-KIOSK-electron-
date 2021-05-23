@@ -224,6 +224,10 @@ function close_modal() {
     document.querySelector('.black_bg').style.display ='none';
 }
 
+function main_modal() {
+    document.querySelector('.modal_close').addEventListener('click', close_modal);
+    appear_modal();
+}
 
 // reservatoin button
 function reservation() {
