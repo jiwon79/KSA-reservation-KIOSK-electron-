@@ -8,6 +8,7 @@ d = getTodayDate();
 var dayLog_exists = fs.existsSync(rootPath+'/log/day_log/'+d+'.txt');
 var userLog_exists = fs.existsSync(rootPath+'/log/user_log/'+d+'.txt');
 
+// day log file
 if(dayLog_exists){ // if exist file, load day log
     console.log("exist :",dayLog_exists);
     loadDayLog();
@@ -16,8 +17,19 @@ if(dayLog_exists){ // if exist file, load day log
     createDayLogFile();
 }
 
+//user log file
 if(userLog_exists){
     console.log("exist : ", userLog_exists);
 } else {
     createUserLogFile();
 }
+
+// student excel data
+var studentList = {}
+xlsxFile(rootPath+'/src/students.xlsx').then((rows) => {
+    for (i=0; i<rows.length; i++) {
+        s = String(rows[i][0]);
+        number = s.slice(0,2) + '-' + s.slice(2,5);
+        studentList[number] = rows[i][1];
+    }
+})

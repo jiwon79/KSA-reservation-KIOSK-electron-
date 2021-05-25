@@ -1,5 +1,6 @@
 let fs = require('fs');
 let rootPath = require('electron-root-path').rootPath;
+const xlsxFile = require('read-excel-file/node');
 
 // get today date return 2021-02-25(Thu)
 function getTodayDate() {
@@ -28,6 +29,15 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function numberValidTest(number) {
+    var regExp = /^\d{2}-\d{3}$/;
+    if(regExp.test(number)) {
+        return true;
+    } else{
+        return false;
+    }
 }
 
 // time table function
@@ -186,8 +196,6 @@ function saveUserLog(option, name, number, tel, room, time) {
     });
 }
 
-
-
 // output: 해당 학생이 예약한 시간 리스트
 function reserveTime(stu_number) {
     result = [];
@@ -213,10 +221,11 @@ function appear_modal(option) {
     document.querySelector('.modal_wrap').style.display ='block';
     document.querySelector('.black_bg').style.display ='block';
     var modal = document.querySelector('.modal_content');
-    if (option=='not_info')     modal.innerText = '학번과 이름 다시 입력 ㄱㄱ';
+    if (option=='not_info')     modal.innerText = '학번, 이름을 입력해주세요';
     if (option == 'over_time')   modal.innerText = '세미나실을 최대 3시간 이용 가능합니다';
     if (option == 'not_reserve')    modal.innerText = '예약을 하지 않았습니다.';
     if (option == 'not_checkbox') modal.innerText = '취소할 시간을 선택해주세요';
+    if (option == 'wrong_info') modal.innerText = '학번과 이름을 정확히 입력해주세요';
 }
 
 function close_modal() {
@@ -252,6 +261,8 @@ function reservation() {
         appear_modal('not_info');
     } else if (checkList.length + reserveList.length > 3) {
         appear_modal('over_time');
+    } else if (studentList[stu_number] != stu_name) {
+        appear_modal('wrong_info');
     } else {
         
         for (i=0; i<checkList.length; i++) {
@@ -270,6 +281,7 @@ function checkbox_load(e) {
     var stu_number = form.number.value;
     var stu_name = form.name.value;
     var stu_tel = form.tel.value;
+    numberValidTest(stu_number);
 
     document.querySelector('#stu_number').innerText = stu_number;
     document.querySelector('#stu_name').innerText = stu_name;
