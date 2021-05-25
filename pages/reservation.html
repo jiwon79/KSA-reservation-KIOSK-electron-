@@ -8,8 +8,6 @@
     <title>Reservation</title>
 </head>
 <body>
-
-
     <div class="center">
         <h3>현재 예약 상태</h3>
 
@@ -156,5 +154,9 @@
     <script src="../src/js/function.js"></script>
     <script src="../src/js/connectDB.js"></script>
     <script src="../src/js/reservation.js"></script>
+    <script>
+        var room = getParameterByName('room');
+        document.querySelector('.center h3').innerText = 'seminar ' + room.toUpperCase() + ' 예약 상태';
+    </script>
 </body>
 </html>
