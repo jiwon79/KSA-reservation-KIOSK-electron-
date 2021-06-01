@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/reservation.css">
     <link rel="stylesheet" href="../src/css/index.css">
+    <link rel="stylesheet" href="../src/css/modal.css">
     <link rel="stylesheet" href="../src/css/header.css">
     <title>Reservation</title>
 </head>
@@ -141,15 +142,8 @@
         </form>
     </div>
 
-    <!-- moal -->
-    <div class="black_bg"></div>
-
-    <div class="modal_wrap">
-        <div class="modal_head">
-            오류오류
-            <div class="modal_close not_info"><a href="#">close</a></div>
-        </div>
-        <div class="modal_content"></div>
+    <div id="modal">
+        <div data-include-path="./modal.html"></div>
     </div>
 
     <a href="index.html"><img src="../src/img/home.png" alt="homne-img" class="home-img"></a>
