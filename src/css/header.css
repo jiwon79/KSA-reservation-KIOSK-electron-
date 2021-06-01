@@ -1,0 +1,91 @@
+/* header */
+#header{
+    width: 100%;
+    margin-top: 10px;
+}
+
+#setting {
+    height: 45px;
+    margin-left: 15px;
+}
+
+#korean {
+    float: right;
+    height: 45px;
+    margin-right: 15px;
+}
+
+#english {
+    float: right;
+    height: 45px;
+    margin-right: 15px;
+}
+
+
+/* modal */
+.mainModal_wrap {
+    display: none;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    transform: translate(-50%, 0%);
+    top: 10%;
+    left: 50%;
+    border-radius: 15px;
+    background: #eee;
+    text-align: center;
+    padding-top: 5%;
+    z-index: 2;
+    opacity: 0.93;
+}
+
+.mainModal_close {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.mainModal_close> a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* background: url(../img/close-window.png); */
+    background: url(../img/close_window.png);
+    background-size: 25px;
+    text-indent: -9999px;
+}
+
+.main_content .title {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.batch {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.main_content p{
+    margin: 0;
+}
+
+.person {
+    margin-bottom: 20px;
+}
+
+.person p:nth-child(1) {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.person p:nth-child(2) {
+    font-size: 12px;
+}
+
+.person p:nth-child(3),
+.person p:nth-child(4) {
+    font-size: 20px;
+}

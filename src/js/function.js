@@ -97,13 +97,6 @@ function overallTable() {
     console.log('apply overall table');
 }
 
-// day log file
-// a : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-// b : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-// c : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-// d : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-// e : 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
 // create text file
 function createDayLogFile() {
     d = getTodayDate();
@@ -231,7 +224,7 @@ function checkMatched(number, name) {
     return false;
 }
 
-// modal when don't input information
+// modal 
 function appear_modal(option) {
     document.querySelector('.modal_wrap').style.display ='block';
     document.querySelector('.black_bg').style.display ='block';
@@ -248,9 +241,16 @@ function close_modal() {
     document.querySelector('.black_bg').style.display ='none';
 }
 
-function main_modal() {
-    document.querySelector('.modal_close').addEventListener('click', close_modal);
-    appear_modal();
+// main modal
+function appear_mainModal() {
+    document.querySelector('.mainModal_close').addEventListener('click', close_mainModal);
+    document.querySelector('.mainModal_wrap').style.display='block';
+    document.querySelector('.black_bg').style.display ='block';
+}
+
+function close_mainModal() {
+    document.querySelector('.mainModal_wrap').style.display ='none';
+    document.querySelector('.black_bg').style.display ='none';
 }
 
 // reservatoin button

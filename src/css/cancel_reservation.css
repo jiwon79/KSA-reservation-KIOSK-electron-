@@ -168,6 +168,6 @@ input[type="checkbox"]:checked {
     border-bottom-color: #adadad;
 }
 
-/* .cancelForm {
+.cancelForm {
     display: none;
-} */
+}

@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="../src/css/index.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../src/css/index.css">
+    <link rel="stylesheet" href="../src/css/header.css">
     <title>Reservation Service</title>
 </head>
 
 <body>
     <div id="header">
-        <img id="setting" src="../src/img/settings.png" alt="setting" onclick="main_modal()">
-        <img id="korean" src="../src/img/korean.png" alt="한국어">
-        <img id="english" src="../src/img/english.png" alt="english">
+        <div data-include-path="./header.html"></div>
     </div>
 
     <div id="main">
@@ -23,49 +22,9 @@
         <a href="overall.html"><img id="reserve" src="../src/img/reservation.png" alt="reservation"></a>
         <a href="cancel_reservation.html"><img id="cancel_reserve" src="../src/img/cancel.png" alt="cancel reservation"></a>
     </div>
-    
-    <!-- moal -->
-    <div class="black_bg"></div>
-
-    <div class="modal_wrap modal_main">
-        <div class="modal_close"><a href="#">close</a></div>
-        <div class="main_content">
-            <div class="title">
-                ABOUT US
-            </div>
-
-            <p class="batch">19학번</p>
-            <div class="person">
-                <p>김문수</p>
-                <p>@godmooner_0829</p>
-                <p>_하드웨어 제작</p>
-                <p>_강라엘 사랑해</p>
-            </div>
-
-            <div class="person">
-                <p>박주원</p>
-                <p>@juwon_pana</p>
-                <p>_UI/UX 디자인</p>
-                <p>_편집하는 여우</p>
-            </div>
-
-            <div class="person">
-                <p>이지원</p>
-                <p>@easy_one1979</p>
-                <p>_소프트웨어 제작</p>
-                <p>_30대 정보부부장</p>
-            </div>
-
-            <div class="person">
-                <p>이지형</p>
-                <p>@ji_hyoung03</p>
-                <p>_나름 팀장</p>
-                <p>_앗..! 박영신 사랑해</p>
-            </div>
-        </div>
-    </div>
 
     <script src="../renderer.js"></script>
+    <script src="../src/js/loadHTML.js"></script>
     <script src="../src/js/function.js"></script>
     <script src="../src/js/connectDB.js"></script>
     <script src="../src/js/reservation.js"></script>
