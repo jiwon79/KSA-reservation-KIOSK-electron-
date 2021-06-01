@@ -67,6 +67,9 @@ function reservationTable() {
 
     for(i=0; i<15; i++) {
         var tr = document.querySelector('.reserveTable tr:nth-child(' + String(i+2) + ')');
+        tr.querySelector('td:nth-child(1)').addEventListener("click", function applyCheckbox(i){});
+        tr.querySelector('td:nth-child(2)').innerText = classList[i];
+        tr.querySelector('td:nth-child(3)').innerText = timeList[i];
         if (!roomList[room][i].includes('00-000')) {
             // tr.style.color = '#00ff00';
             tr.style.backgroundColor = '#adadad';
@@ -215,6 +218,18 @@ function print() {
     }
 }
 
+// number, name match check
+function checkMatched(number, name) {
+    if (studentList[number] == name) {
+        console.log('학번, 이름이 정확합니다');
+        return true;
+    }
+    if (number.slice(3,4) == '2') {
+        console.log('외국인임');
+        return true;
+    }
+    return false;
+}
 
 // modal when don't input information
 function appear_modal(option) {
@@ -261,7 +276,7 @@ function reservation() {
         appear_modal('not_info');
     } else if (checkList.length + reserveList.length > 3) {
         appear_modal('over_time');
-    } else if (studentList[stu_number] != stu_name) {
+    } else if (!checkMatched(stu_number, stu_name)) {
         appear_modal('wrong_info');
     } else {
         
@@ -297,7 +312,10 @@ function checkbox_load(e) {
     } else if (reserveList.length == 0) {
         appear_modal('not_reserve')
         return;
-    }
+    } else if (!checkMatched(stu_number, stu_name)) {
+        appear_modal('wrong_info');
+        return;
+    } 
     e.preventDefault();
     // form.submit();
     
@@ -309,9 +327,8 @@ function checkbox_load(e) {
         if (i < reserveList.length) {
             formLi = document.querySelector('form li:nth-child('+String(i+1)+')')
             formLi.style.display = 'block';
-            
-            var str = 'seminar ' + reserveList[i][0] + ' : ';
-            str +=  String((reserveList[i][1]+8)%12) + '~' + String((reserveList[i][1]+9)%12) + '시';
+            idx = reserveList[i][1]
+            var str = reserveList[i][0].toUpperCase() + ' : ' + classList[idx] + ', ' + timeList[idx];
             formLi.querySelector('label').innerText = str;
         } else {
             document.querySelector('form li:nth-child('+String(i+1)+')').style.display = 'none';
@@ -340,15 +357,15 @@ function reserve_cancel() {
     document.querySelector('.modal_close').addEventListener('click', close_modal);
     if(!isCheck) {
         appear_modal('not_checkbox');
-    }
-
-    for (var i=0; i<checkbox.length; i++) {
-        if (checkbox[i].checked == true) {
-            roomList[reserveList[i][0]][reserveList[i][1]] = 1;
-            saveUserLog('reservation_cancel', stu_name, stu_number, stu_tel, reserveList[i][0], reserveList[i][1]);
+    } else {
+        for (var i=0; i<checkbox.length; i++) {
+            if (checkbox[i].checked == true) {
+                roomList[reserveList[i][0]][reserveList[i][1]] = 1;
+                saveUserLog('reservation_cancel', stu_name, stu_number, stu_tel, reserveList[i][0], reserveList[i][1]);
+            }
         }
+    
+        saveDayLogByArray('00-000');
+        document.cancelForm.submit();
     }
-
-    saveDayLogByArray('00-000');
-    document.cancelForm.submit();
 }
