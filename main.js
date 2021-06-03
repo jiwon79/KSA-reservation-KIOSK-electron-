@@ -14,6 +14,7 @@ function createWindow () {
     }
   });
 
+  // mainWindow.setMenu(null);
   // and load the index.html of the app.
   mainWindow.loadFile('./pages/index.html');
 

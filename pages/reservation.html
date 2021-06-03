@@ -25,7 +25,7 @@
                 <td>예약자</td>
             </tr>
             <tr onclick="applyCheckbox(0)">
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" onclick="changeChecked(0)"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -120,7 +120,7 @@
             <div class="txt_field">
                 <input type="text" name="number" autocomplete="off" required>
                 <span></span>
-                <label>Student number(19-079)</label>
+                <label>Student number (ex. 19-079)</label>
 
             </div>
     
@@ -134,13 +134,14 @@
             <div class="txt_field">
                 <input type="text" name="tel" autocomplete="off" required>
                 <span></span>
-                <label>Phone number</label>
+                <label>Phone number (ex. 010-9348-6088)</label>
                 
             </div>
 
             <input type="button" onclick="reservation()"  value="예약하기">
         </form>
     </div>
+    <img class="text" src="../src/img/text6.png" alt="">
 
     <div id="modal">
         <div data-include-path="./modal.html"></div>

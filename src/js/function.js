@@ -90,7 +90,8 @@ function overallTable() {
             var qeury = '.s' + r + ' td:nth-child(' + String(j+1) + ')';
             table = document.querySelector(qeury);
             if(!roomList[roomAraay[i]][j].includes('00-000')) {
-                table.style.backgroundColor = "blue";
+                table.style.backgroundColor = "#f26336";
+                table.style.color = "#ffffff";
             }
         }
     }
@@ -231,6 +232,7 @@ function appear_modal(option) {
     var modal = document.querySelector('.modal_content');
     if (option=='not_info')     modal.innerText = '학번, 이름을 입력해주세요';
     if (option == 'over_time')   modal.innerText = '세미나실을 최대 3시간 이용 가능합니다';
+    if (option == 'not_check_reserve')  modal.innerText = '예약할 시간을 선택해 주세요.';
     if (option == 'not_reserve')    modal.innerText = '예약을 하지 않았습니다.';
     if (option == 'not_checkbox') modal.innerText = '취소할 시간을 선택해주세요';
     if (option == 'wrong_info') modal.innerText = '학번과 이름을 정확히 입력해주세요';
@@ -276,6 +278,8 @@ function reservation() {
         appear_modal('not_info');
     } else if (checkList.length + reserveList.length > 3) {
         appear_modal('over_time');
+    } else if (!checkList.length) {
+        appear_modal('not_check_reserve');
     } else if (!checkMatched(stu_number, stu_name)) {
         appear_modal('wrong_info');
     } else {
@@ -319,7 +323,7 @@ function checkbox_load(e) {
     e.preventDefault();
     // form.submit();
     
-
+    document.querySelector('.checkInputForm input[type="button"]').style.display = 'none';
     document.querySelector('.cancelForm').style.display = 'block';
     var checkbox = document.getElementsByName("time");
     // whether visible or unvisible checkbox

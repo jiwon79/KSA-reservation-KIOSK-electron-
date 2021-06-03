@@ -15,17 +15,17 @@
     </div>
 
     <div class="center">
-        <h3>Reservatoin Cancel Page</h3>
+        <h3>Reservation Cancel Page</h3>
         <span id="stu_number" class="info"></span>
         <span id="stu_name" class="info"></span>
         <span id="stu_tel" class="info"></span>
 
 
-        <form name="cancelInputForm" action="" method="GET">
+        <form name="cancelInputForm" class="checkInputForm" action="" method="GET">
             <div class="txt_field">
                 <input type="text" name="number" autocomplete="off" required>
                 <span></span>
-                <label>Student number(19-079)</label>
+                <label>Student number (ex. 19-079)</label>
             </div>
     
             <div class="txt_field">
@@ -37,7 +37,7 @@
             <div class="txt_field">
                 <input type="text" name="tel" autocomplete="off" required>
                 <span></span>
-                <label>Phone number</label>
+                <label>Phone number (ex. 010-9348-6088)</label>
             </div>
     
             <input id="input_button" type="button" onclick="checkbox_load(event)"  value="다음">
@@ -60,7 +60,7 @@
                     <label for="time3">11시</label>
                 </li>
             </ul>
-            <input id="checkbox_button" type="button" onclick="reserve_cancel()"  value="다음">
+            <input id="checkbox_button" type="button" onclick="reserve_cancel()"  value="취소하기">
         </form>
     </div>
 
