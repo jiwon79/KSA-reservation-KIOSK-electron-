@@ -41,6 +41,11 @@
     width: 6.66%;
 }
 
+.small_table td:nth-child(5),
+.small_table td:nth-child(11) {
+    font-size: 13px;
+}
+
 /* td {
     border: 1px solid black;
 } */
