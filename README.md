@@ -1,45 +1,13 @@
-# electron-quick-start
-
-**Clone and run for a quick way to see Electron in action.**
-
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
-
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
-
-A basic Electron application needs just these files:
-
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
-
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-## Resources for Learning Electron
-
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
-
-## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
+![캡처](https://user-images.githubusercontent.com/59159410/123046321-ee85ca00-d436-11eb-98ff-41c545309368.PNG)
+![캡처1](https://user-images.githubusercontent.com/59159410/123046328-f04f8d80-d436-11eb-85b4-a7138e4dd37f.PNG)
+![캡처2](https://user-images.githubusercontent.com/59159410/123046330-f0e82400-d436-11eb-9db5-ff4ee6db4109.PNG)
+![캡처3](https://user-images.githubusercontent.com/59159410/123046332-f0e82400-d436-11eb-8d2e-e639a108ec91.PNG)
+![캡처4](https://user-images.githubusercontent.com/59159410/123046333-f180ba80-d436-11eb-8041-9c75c9ab69f3.PNG)
+![캡처5](https://user-images.githubusercontent.com/59159410/123046336-f2195100-d436-11eb-8761-da61d246b3ca.PNG)
+![캡처6](https://user-images.githubusercontent.com/59159410/123046340-f2195100-d436-11eb-8233-6d9de64ba110.PNG)
+![캡처7](https://user-images.githubusercontent.com/59159410/123046341-f2b1e780-d436-11eb-96df-3e09ab3f1ca5.PNG)
+![캡처8](https://user-images.githubusercontent.com/59159410/123046342-f2b1e780-d436-11eb-8247-ce289c298ddd.PNG)
+![캡처9](https://user-images.githubusercontent.com/59159410/123046343-f34a7e00-d436-11eb-8164-21a76bb709a1.PNG)
+![캡처10](https://user-images.githubusercontent.com/59159410/123046345-f3e31480-d436-11eb-8226-43a61347b65d.PNG)
+![캡처11](https://user-images.githubusercontent.com/59159410/123046347-f3e31480-d436-11eb-8a7d-e903142ab43d.PNG)
+![캡처12](https://user-images.githubusercontent.com/59159410/123046349-f47bab00-d436-11eb-973a-93b3d47faf98.PNG)
