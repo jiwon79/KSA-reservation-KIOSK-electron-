@@ -23,5 +23,9 @@
   "builder": {
     "productName": "electron-application",
     "appId": "myApp"
+  },
+  "dependencies": {
+    "electron-root-path": "^1.0.16",
+    "read-excel-file": "^5.2.9"
   }
 }
